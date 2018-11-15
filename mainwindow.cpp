@@ -16,10 +16,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->saveFile, SIGNAL(clicked()), this, SLOT(saveFile()));
     connect(ui->selectButton, SIGNAL(clicked()), this, SLOT(deleteRow()));
     connect(ui->addButton, SIGNAL(clicked()), this, SLOT(addWindow()));
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
-    ui->tableWidget->horizontalHeader()->resizeSection(0, 120);
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Fixed);
-    ui->tableWidget->horizontalHeader()->resizeSection(2, 60);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+    //ui->tableWidget->horizontalHeader()->resizeSection(0, 120);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
+    //ui->tableWidget->horizontalHeader()->resizeSection(2, 60);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -54,30 +54,50 @@ void MainWindow::setTable()
     ui->tableWidget->setRowCount(list.getLength());
     List::Iterator iter;
     iter = list.begin();
-    Dish *dish;
+    const Dish *dish;
+    const SetLunch *lunch;
     QString text;
     for(int row = 0; row < list.getLength(); row++, iter++)
     {
-        dish = dynamic_cast<Dish*>(*iter);
-        item = new QTableWidgetItem;
-        item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        item->setText(dish->getName().c_str());
-        ui->tableWidget->setItem(row, 0, item);
-        item = new QTableWidgetItem;
-        item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        item->setText(std::to_string(dish->getEnergyValueTotal()).c_str());
-        ui->tableWidget->setItem(row, 2, item);
-        item = new QTableWidgetItem;
-        item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-        item->setText(std::to_string(dish->getWeight()).c_str());
-        ui->tableWidget->setItem(row, 1, item);
+        switch((*iter)->getKind())
+        {
+        case(DISH):
+            dish = dynamic_cast<const Dish*>(*iter);
+            item = new QTableWidgetItem;
+            item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            item->setText(dish->getName().c_str());
+            ui->tableWidget->setItem(row, 0, item);
+            item = new QTableWidgetItem;
+            item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            item->setText(std::to_string(dish->getEnergyValueTotal()).c_str());
+            ui->tableWidget->setItem(row, 2, item);
+            item = new QTableWidgetItem;
+            item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            item->setText(std::to_string(dish->getWeight()).c_str());
+            ui->tableWidget->setItem(row, 1, item);
+            break;
+        case(SETLUNCH):
+            lunch = dynamic_cast<const SetLunch*>(*iter);
+            item = new QTableWidgetItem;
+            item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            item->setText(lunch->getNameTotal().c_str());
+            ui->tableWidget->setItem(row, 0, item);
+            item = new QTableWidgetItem;
+            item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            item->setText(std::to_string(dish->getEnergyValueTotal()).c_str());
+            ui->tableWidget->setItem(row, 2, item);
+            item = new QTableWidgetItem;
+            item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+            item->setText(lunch->getWeightTotal().c_str());
+            ui->tableWidget->setItem(row, 1, item);
+        }
     }
 }
 
 void MainWindow::deleteRow()
 {
     float energyValue = ui->tableWidget->selectedItems().last()->text().toFloat();
-    Base* temp = list.findDish(energyValue);
+    const Base* temp = list.findDish(energyValue);
     list.deleteNode(temp);
     setTable();
 }
