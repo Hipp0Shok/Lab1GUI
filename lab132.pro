@@ -29,7 +29,8 @@ SOURCES += \
     ../lab1/dish.cpp \
     ../lab1/list.cpp \
     ../lab1/setlunch.cpp \
-    addwindow.cpp
+    addwindow.cpp \
+    addlunchwindow.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -37,11 +38,13 @@ HEADERS += \
     ../lab1/dish.h \
     ../lab1/list.h \
     ../lab1/setlunch.h \
-    addwindow.h
+    addwindow.h \
+    addlunchwindow.h
 
 FORMS += \
         mainwindow.ui \
-    addwindow.ui
+    addwindow.ui \
+    addlunchwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->saveFile, SIGNAL(clicked()), this, SLOT(saveFile()));
     connect(ui->selectButton, SIGNAL(clicked()), this, SLOT(deleteRow()));
     connect(ui->addButton, SIGNAL(clicked()), this, SLOT(addWindow()));
+    connect(ui->lunchButton, SIGNAL(clicked()), this, SLOT(addLunchWindow()));
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     //ui->tableWidget->horizontalHeader()->resizeSection(0, 120);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
@@ -56,7 +57,6 @@ void MainWindow::setTable()
     iter = list.begin();
     const Dish *dish;
     const SetLunch *lunch;
-    QString text;
     for(int row = 0; row < list.getLength(); row++, iter++)
     {
         switch((*iter)->getKind())
@@ -69,26 +69,26 @@ void MainWindow::setTable()
             ui->tableWidget->setItem(row, 0, item);
             item = new QTableWidgetItem;
             item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            item->setText(std::to_string(dish->getEnergyValueTotal()).c_str());
+            item->setText(QString::number(dish->getEnergyValueTotal()));
             ui->tableWidget->setItem(row, 2, item);
             item = new QTableWidgetItem;
             item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            item->setText(std::to_string(dish->getWeight()).c_str());
+            item->setText(QString::number(dish->getWeight()));
             ui->tableWidget->setItem(row, 1, item);
             break;
         case(SETLUNCH):
             lunch = dynamic_cast<const SetLunch*>(*iter);
             item = new QTableWidgetItem;
             item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            item->setText(lunch->getNameTotal().c_str());
+            item->setText(lunch->getNameTotal());
             ui->tableWidget->setItem(row, 0, item);
             item = new QTableWidgetItem;
             item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            item->setText(std::to_string(dish->getEnergyValueTotal()).c_str());
+            item->setText(QString::number(dish->getEnergyValueTotal()));
             ui->tableWidget->setItem(row, 2, item);
             item = new QTableWidgetItem;
             item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            item->setText(lunch->getWeightTotal().c_str());
+            item->setText(lunch->getWeightTotal());
             ui->tableWidget->setItem(row, 1, item);
         }
     }
@@ -107,4 +107,9 @@ void MainWindow::addWindow()
     AddWindow *win = new AddWindow(&list, this);
 
     win->show();
+}
+
+void MainWindow::addLunchWindow()
+{
+
 }

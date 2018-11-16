@@ -7,7 +7,14 @@ AddWindow::AddWindow(List *list, QWidget *parent) :
     ui(new Ui::AddWindow),
     editList(list)
 {
+    QRegExp numbers("([0-9]+\\.)?[0-9]+");
     ui->setupUi(this);
+    ui->fatsEdit->setValidator(new QRegExpValidator(numbers, this));
+    ui->protEdit->setValidator(new QRegExpValidator(numbers, this));
+    ui->carboEdit->setValidator(new QRegExpValidator(numbers, this));
+    ui->acidsEdit->setValidator(new QRegExpValidator(numbers, this));
+    ui->fibersEdit->setValidator(new QRegExpValidator(numbers, this));
+    ui->weightEdit->setValidator(new QRegExpValidator(numbers, this));
     connect(ui->addButton, SIGNAL(clicked()), this, SLOT(addDish()));
 }
 

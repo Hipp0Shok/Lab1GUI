@@ -30,6 +30,7 @@ public slots:
     void saveFile();
     void deleteRow();
     void addWindow();
+    void addLunchWindow();
 
 };
 
