@@ -3,7 +3,8 @@
 #include "QPushButton"
 #include <string>
 #include "QFileDialog"
-#include"addwindow.h"
+#include "addwindow.h"
+#include "addlunchwindow.h"
 
 
 
@@ -44,9 +45,12 @@ void MainWindow::openFile()
 
 void MainWindow::saveFile()
 {
-    QString fileName;
-    fileName = QFileDialog::getSaveFileName(this, "Сохранить файл как", "", "*.dat");
-    list.writeInFile(fileName.toStdString());
+    if(list.getLength() != 0)
+    {
+        QString fileName;
+        fileName = QFileDialog::getSaveFileName(this, "Сохранить файл как", "", "*.dat");
+        list.writeInFile(fileName.toStdString());
+    }
 }
 
 void MainWindow::setTable()
@@ -84,7 +88,7 @@ void MainWindow::setTable()
             ui->tableWidget->setItem(row, 0, item);
             item = new QTableWidgetItem;
             item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            item->setText(QString::number(dish->getEnergyValueTotal()));
+            item->setText(QString::number(lunch->getEnergyValueTotal()));
             ui->tableWidget->setItem(row, 2, item);
             item = new QTableWidgetItem;
             item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
@@ -96,10 +100,13 @@ void MainWindow::setTable()
 
 void MainWindow::deleteRow()
 {
-    float energyValue = ui->tableWidget->selectedItems().last()->text().toFloat();
-    const Base* temp = list.findDish(energyValue);
-    list.deleteNode(temp);
-    setTable();
+    if(!ui->tableWidget->selectedItems().empty())
+    {
+        std::string name = ui->tableWidget->selectedItems().first()->text().toStdString();
+        const Base* temp = list.findDishByName(name);
+        list.deleteNode(temp);
+        setTable();
+    }
 }
 
 void MainWindow::addWindow()
@@ -111,5 +118,6 @@ void MainWindow::addWindow()
 
 void MainWindow::addLunchWindow()
 {
-
+    AddLunchWindow *addLunchWin = new AddLunchWindow(&list, this);
+    addLunchWin->show();
 }
