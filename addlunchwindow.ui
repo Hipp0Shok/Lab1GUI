@@ -38,7 +38,7 @@
          </size>
         </property>
         <property name="text">
-         <string>Создать комплекс</string>
+         <string>Add Set Lunch</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -50,7 +50,7 @@
         <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>Первое блюдо</string>
+           <string>First course</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -67,7 +67,7 @@
         <item>
          <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>Второе блюдо</string>
+           <string>Second course</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -84,7 +84,7 @@
         <item>
          <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>Десерт</string>
+           <string>Dessert</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -99,7 +99,7 @@
       <item>
        <widget class="QPushButton" name="addLunchButton">
         <property name="text">
-         <string>Создать</string>
+         <string>Add</string>
         </property>
        </widget>
       </item>

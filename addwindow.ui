@@ -28,7 +28,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Название</string>
+           <string>Name</string>
           </property>
          </widget>
         </item>
@@ -51,7 +51,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Жиры</string>
+           <string>Fats</string>
           </property>
          </widget>
         </item>
@@ -74,7 +74,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Белки</string>
+           <string>Proteins</string>
           </property>
          </widget>
         </item>
@@ -97,7 +97,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Углеводы</string>
+           <string>Carbohydrates</string>
           </property>
          </widget>
         </item>
@@ -120,7 +120,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Пищевые волокна</string>
+           <string>Alimentary Fibers</string>
           </property>
          </widget>
         </item>
@@ -153,7 +153,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Органические кислоты</string>
+           <string>Organic Acids</string>
           </property>
          </widget>
         </item>
@@ -166,7 +166,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>Вес</string>
+           <string>Weight</string>
           </property>
          </widget>
         </item>
@@ -185,7 +185,7 @@
       <item>
        <widget class="QPushButton" name="addButton">
         <property name="text">
-         <string>Добавить</string>
+         <string>Add</string>
         </property>
        </widget>
       </item>

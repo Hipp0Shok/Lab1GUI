@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>506</width>
-    <height>441</height>
+    <width>529</width>
+    <height>434</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -28,28 +28,28 @@
         <item>
          <widget class="QPushButton" name="chooseFile">
           <property name="text">
-           <string>Выбрать файл</string>
+           <string>Open</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="saveFile">
           <property name="text">
-           <string>Сохранить</string>
+           <string>Save</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="selectButton">
           <property name="text">
-           <string>Удалить</string>
+           <string>Delete</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QPushButton" name="addButton">
           <property name="text">
-           <string>Добавить</string>
+           <string>Add Dish</string>
           </property>
          </widget>
         </item>
@@ -62,7 +62,7 @@
            </size>
           </property>
           <property name="text">
-           <string>Добавить Комплекс</string>
+           <string>Add Set Lunch</string>
           </property>
          </widget>
         </item>
@@ -84,17 +84,17 @@
         </property>
         <column>
          <property name="text">
-          <string>Название блюда</string>
+          <string>Name</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Вес</string>
+          <string>Weight</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Энергетическая ценность</string>
+          <string>Energy Value</string>
          </property>
         </column>
        </widget>
@@ -108,7 +108,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>506</width>
+     <width>529</width>
      <height>20</height>
     </rect>
    </property>

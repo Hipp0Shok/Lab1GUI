@@ -38,7 +38,7 @@ void MainWindow::openFile()
     fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("*.dat"));
     if(fileName != "")
     {
-        list.readFromFile(fileName.toStdString());
+        list.readFromFile(fileName);
         setTable();
     }
 }
@@ -49,7 +49,7 @@ void MainWindow::saveFile()
     {
         QString fileName;
         fileName = QFileDialog::getSaveFileName(this, "Сохранить файл как", "", "*.dat");
-        list.writeInFile(fileName.toStdString());
+        list.writeInFile(fileName);
     }
 }
 
@@ -69,7 +69,7 @@ void MainWindow::setTable()
             dish = dynamic_cast<const Dish*>(*iter);
             item = new QTableWidgetItem;
             item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
-            item->setText(dish->getName().c_str());
+            item->setText(dish->getName());
             ui->tableWidget->setItem(row, 0, item);
             item = new QTableWidgetItem;
             item->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
@@ -102,8 +102,8 @@ void MainWindow::deleteRow()
 {
     if(!ui->tableWidget->selectedItems().empty())
     {
-        std::string name = ui->tableWidget->selectedItems().first()->text().toStdString();
-        const Base* temp = list.findDishByName(name);
+        const Base* temp = list.findByNameAndEnergy(ui->tableWidget->selectedItems().last()->text().toFloat(),
+                                                    ui->tableWidget->selectedItems().first()->text());
         list.deleteNode(temp);
         setTable();
     }

@@ -16,7 +16,7 @@ AddLunchWindow::AddLunchWindow(List* list, QWidget *parent) :
     {
         if((*iter)->getKind() == DISH)
         {
-            text = QString::fromStdString(dynamic_cast< const Dish*>(*iter)->getName());
+            text = dynamic_cast< const Dish*>(*iter)->getName();
             ui->soupCombo->addItem(text);
             ui->mainCombo->addItem(text);
             ui->dessertCombo->addItem(text);
@@ -32,9 +32,9 @@ AddLunchWindow::~AddLunchWindow()
 void AddLunchWindow::setCombo()
 {
     const Base *soup, *mainCourse, *dessert;
-    soup = editList->findDishByName(ui->soupCombo->currentText().toStdString());
-    mainCourse = editList->findDishByName(ui->mainCombo->currentText().toStdString());
-    dessert = editList->findDishByName(ui->dessertCombo->currentText().toStdString());
+    soup = editList->findDishByName(ui->soupCombo->currentText());
+    mainCourse = editList->findDishByName(ui->mainCombo->currentText());
+    dessert = editList->findDishByName(ui->dessertCombo->currentText());
     if(!soup || !mainCourse || !dessert)
     {
         return;

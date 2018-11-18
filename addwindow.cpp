@@ -99,7 +99,7 @@ void AddWindow::addDish()
         }
         if(!flag)
         {
-            Dish temp(ui->nameEdit->text().toStdString(),
+            Dish temp(ui->nameEdit->text(),
                       fats, prots, carbo, acids, fibers, weight);
             editList->addNode(temp);
             dynamic_cast<MainWindow*>(this->parent())->setTable();
