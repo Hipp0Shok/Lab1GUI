@@ -88,7 +88,7 @@ void AddWindow::addDish()
             ui->fibersEdit->setPalette(defaultPalette);
         }
         weight = ui->weightEdit->text().toFloat();
-        if(weight <= 0.0F || weight > 100.0F)
+        if(weight <= 0.0F)
         {
         ui->weightEdit->setPalette(warningPalette);
         flag = true;

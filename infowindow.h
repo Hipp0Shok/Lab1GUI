@@ -1,5 +1,6 @@
 #ifndef INFOWINDOW_H
 #define INFOWINDOW_H
+#include "mainwindow.h"
 
 #include <QMainWindow>
 
@@ -12,7 +13,7 @@ class InfoWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit InfoWindow(QWidget *parent = nullptr);
+    explicit InfoWindow(const Dish*, QWidget *parent = nullptr);
     ~InfoWindow();
 
 private:

@@ -5,6 +5,7 @@
 #include "QFileDialog"
 #include "addwindow.h"
 #include "addlunchwindow.h"
+#include "infowindow.h"
 
 
 
@@ -18,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->selectButton, SIGNAL(clicked()), this, SLOT(deleteRow()));
     connect(ui->addButton, SIGNAL(clicked()), this, SLOT(addWindow()));
     connect(ui->lunchButton, SIGNAL(clicked()), this, SLOT(addLunchWindow()));
+    connect(ui->tableWidget, SIGNAL(cellDoubleClicked(int, int)), this, SLOT(showInfo(int, int)));
+    connect(ui->findButton, SIGNAL(clicked()), this, SLOT(showFound()));
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
     //ui->tableWidget->horizontalHeader()->resizeSection(0, 120);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
@@ -112,12 +115,33 @@ void MainWindow::deleteRow()
 void MainWindow::addWindow()
 {
     AddWindow *win = new AddWindow(&list, this);
-
+    win->setWindowTitle("Add Dish");
     win->show();
 }
 
 void MainWindow::addLunchWindow()
 {
     AddLunchWindow *addLunchWin = new AddLunchWindow(&list, this);
+    addLunchWin->setWindowTitle("Add Set Lunch");
     addLunchWin->show();
 }
+
+void MainWindow::showInfo(int, int)
+{
+    const Base* temp = list.findByNameAndEnergy(ui->tableWidget->selectedItems().last()->text().toFloat(),
+                                                ui->tableWidget->selectedItems().first()->text());
+    if(temp->getKind() == DISH)
+    {
+        InfoWindow *info = new InfoWindow(dynamic_cast<const Dish*>(temp), this);
+        info->setWindowTitle("Information");
+        info->show();
+    }
+}
+
+void MainWindow::showFound()
+{
+    const Dish* temp = dynamic_cast<const Dish*>(list.findDish(ui->energyValueEdit->text().toFloat()));
+    FinderWindow *found = new FinderWindow(temp, this);
+    found->show();
+}
+

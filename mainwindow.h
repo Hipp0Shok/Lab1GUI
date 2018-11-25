@@ -6,6 +6,7 @@
 #include <QtGui>
 #include <QTableWidget>
 #include "D:\study\info\lab1\list.h"
+#include "finderwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -31,6 +32,9 @@ public slots:
     void deleteRow();
     void addWindow();
     void addLunchWindow();
+    void showInfo(int, int);
+    void showFound();
+
 
 };
 
